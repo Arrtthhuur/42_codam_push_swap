@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/02/02 16:43:19 by abeznik       ########   odam.nl          #
+#    Updated: 2022/02/03 14:21:42 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,18 @@ VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
 
 # Srcs
 SRCS		=	main.c \
+				input_parser.c \
 				radix_sort.c \
 				pancake.c \
 				exit_message.c \
 				ft_split.c \
 				ft_strlen.c \
 				ft_substr.c \
+				ft_isdigit.c \
+				ft_atoi.c \
+				ft_atoll.c \
+				ft_isspace.c \
+				ps_lstadd_front.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -48,7 +54,10 @@ run: all
 	./$(NAME)
 
 drun: all
-	lldb $(NAME)
+	lldb $(NAME) -- 123 123
+
+norm:
+	norminette srcs/main.c srcs/input_parser.c srcs/push_swap.c srcs/utils/ includes/
 
 test:
 	@$(MAKE) -C unit-tests

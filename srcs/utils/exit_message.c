@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/01 13:58:49 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/02/03 12:53:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	error_msg(char *msg)
 {
-	write(2, "Error\n", 7);
+	write(2, "Error\n\t", 7);
 	if (msg)
 		write(2, msg, ft_strlen(msg));
 	return (EXIT_FAILURE);
@@ -24,8 +24,14 @@ int	error_msg(char *msg)
 
 int	success_msg(char *msg)
 {
-	write(2, "Success\n", 9);
+	write(2, "Success\n\t", 9);
 	if (msg)
 		write(2, msg, ft_strlen(msg));
 	return (EXIT_SUCCESS);
+}
+
+void	error_exit(void)
+{
+	write(2, "Error\n", 7);
+	exit(1);
 }

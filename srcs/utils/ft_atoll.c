@@ -1,12 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                        :+:    :+:            */
+/*   ft_atoll.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/01 15:15:02 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 12:51:40 by abeznik       ########   odam.nl         */
+/*   Created: 2022/02/03 12:56:00 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/02/03 12:56:22 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/push_swap.h"
+
+long long	ft_atoll(const char *str)
+{
+	int			i;
+	long long	res;
+	int			minus;
+
+	i = 0;
+	res = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	minus = 1;
+	if (str[i] == '-')
+		minus = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		res *= 10;
+		res += str[i] - '0';
+		i++;
+	}
+	return (res * minus);
+}
