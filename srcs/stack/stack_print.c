@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ps_lstadd_front.c                                  :+:    :+:            */
+/*   stack_print.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/03 13:46:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 13:48:21 by abeznik       ########   odam.nl         */
+/*   Created: 2022/02/05 14:58:44 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/02/05 15:52:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#define NaN -1
+#include <stdio.h>
 
-void	ps_lstadd_front(t_stack **s, int value)
+t_stack	*stack_reverse(t_stack *head)
 {
-	t_stack	*new;
+	t_stack	*prev;
+	t_stack	*current;
+	t_stack	*next;
 
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		error_exit();
-	new->value = value;
-	new->index = NaN;
-	new->next = *s;
-	*s = new;
+	prev = NULL;
+	current = head;
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	head = prev;
+	return (head);
+}
+
+void	stack_print(t_stack *a)
+{
+	while (a->next != NULL)
+	{
+		printf("%d\n", a->value);
+		a = a->next;
+	}
+	printf("%d\n", a->value);
 }

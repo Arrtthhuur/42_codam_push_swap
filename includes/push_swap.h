@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:22:20 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/02/05 16:02:55 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 typedef struct s_stack
 {
 	int				value;
-	int				index;
 	struct s_stack	*next;
 }	t_stack;
 
-// Main driver
+// Main functions.
 int			main(int argc, char **argv);
 void		input_parser(t_stack **a, char **argv);
 
@@ -35,7 +34,9 @@ void		pancake_sort(int *arr, int n);
 void		print_array(int arr[], int n);
 
 // Stack related functions.
-void		ps_lstadd_front(t_stack **s, int value);
+void		stack_addfront(t_stack **s, int value);
+t_stack		*stack_reverse(t_stack *head);
+void		stack_print(t_stack *a);
 
 // Util functions.
 size_t		ft_strlen(const char *s);

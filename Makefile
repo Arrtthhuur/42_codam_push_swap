@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/02/03 14:21:42 by abeznik       ########   odam.nl          #
+#    Updated: 2022/02/05 17:20:32 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS		=	main.c \
 				ft_atoi.c \
 				ft_atoll.c \
 				ft_isspace.c \
-				ps_lstadd_front.c \
+				stack_addfront.c \
+				stack_print.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -57,7 +58,8 @@ drun: all
 	lldb $(NAME) -- 123 123
 
 norm:
-	norminette srcs/main.c srcs/input_parser.c srcs/push_swap.c srcs/utils/ includes/
+	norminette srcs/main.c srcs/input_parser.c srcs/utils/ 
+	norminette srcs/operations includes/
 
 test:
 	@$(MAKE) -C unit-tests

@@ -6,13 +6,16 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 14:13:25 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:16:19 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/02/05 13:47:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdbool.h>
-  
+
+# define FALSE 1
+# define TRUE 0
+
 void swap(int *xp, int *yp)
 {
 	int temp;
@@ -27,22 +30,26 @@ void bubbleSort(int arr[], int n)
 {
 	int i;
 	int j;
-	bool swapped;
-	for (i = 0; i < n-1; i++)
+	int	swapped;
+
+	i = 0;
+	while (i < n - 1)
 	{
-		swapped = false;
-		for (j = 0; j < n-i-1; j++)
+		swapped = FALSE;
+		j = 0;
+		while (j < n - i - 1)
 		{
-			if (arr[j] > arr[j+1])
+			if (arr[j] > arr[j + 1])
 			{
-				swap(&arr[j], &arr[j+1]);
-				swapped = true;
+				swap(&arr[j], &arr[j + 1]);
+				swapped = TRUE;
 			}
+			j++;
 		}
-  
-     // IF no two elements were swapped by inner loop, then break
-		if (swapped == false)
-			break;
+		// IF no two elements were swapped by inner loop, then break
+		if (swapped == FALSE)
+			break ;
+		i++;
 	}
 }
   

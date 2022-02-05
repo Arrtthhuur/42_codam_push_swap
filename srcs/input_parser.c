@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 16:08:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:27:31 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/02/05 16:02:03 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 
 #include <stdio.h>
 
-static int	check_big(char *value)
-{
-	long long	tmp;
-
-	tmp = ft_atoll(value);
-	if (tmp < INT_MIN || tmp > INT_MAX)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-static int	check_int(char *value)
+static int	check_only_int(char *value)
 {
 	if (*value == '-')
 		value++;
@@ -39,33 +29,33 @@ static int	check_int(char *value)
 	return (0);
 }
 
-static void	check_dup(t_stack *start)
+static int	check_bigger_int(char *value)
 {
-	t_stack	*index;
-	t_stack	*curr;
+	long long	tmp;
 
-	index = start;
-	while (index != NULL && index->next != NULL)
-	{
-		curr = index;
-		while (curr->next != NULL)
-		{
-			if (index->value == curr->next->value)
-				error_exit();
-			curr = curr->next;
-		}
-		index = index->next;
-	}
+	tmp = ft_atoll(value);
+	if (tmp < INT_MIN || tmp > INT_MAX)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
-static void	print_stack(t_stack *a)
+static void	check_duplicates(t_stack *head)
 {
-	while (a->next != NULL)
+	t_stack	*curr;
+	t_stack	*tmp;
+
+	curr = head;
+	while (curr != NULL)
 	{
-		printf("[%d] %d\n", a->index, a->value);
-		a = a->next;
+		tmp = curr;
+		while (tmp->next != NULL)
+		{
+			if (curr->value == tmp->next->value)
+				error_exit();
+			tmp = tmp->next;
+		}
+		curr = curr->next;
 	}
-	printf("[%d] %d\n", a->index, a->value);
 }
 
 void	input_parser(t_stack **a, char **argv)
@@ -75,13 +65,13 @@ void	input_parser(t_stack **a, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (check_int(argv[i]))
+		if (check_only_int(argv[i]))
 			error_exit();
-		if (check_big(argv[i]))
+		if (check_bigger_int(argv[i]))
 			error_exit();
-		ps_lstadd_front(a, ft_atoi(argv[i]));
+		stack_addfront(a, ft_atoi(argv[i]));
 		i++;
 	}
-	check_dup(*a);
-	print_stack(*a);
+	check_duplicates(*a);
+	*a = stack_reverse(*a);
 }
