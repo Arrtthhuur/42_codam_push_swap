@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   stack_print.c                                      :+:    :+:            */
+/*   rotate.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/05 14:58:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 15:37:12 by abeznik       ########   odam.nl         */
+/*   Created: 2022/04/12 15:37:17 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/04/12 15:49:13 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#include <stdio.h>
-
-void	stack_print(t_stack *a, char stack)
+void	rotate(t_stack **stack)
 {
-	while (a->next != NULL)
-	{
-		printf("%d\n", a->value);
-		a = a->next;
-	}
-	printf("%d", a->value);
-	printf("\n-\n%c\n\n", stack);
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!*stack)
+		return ;
+	first = *stack;
+	last = *stack;
+	*stack = first->next;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = first;
+	first->next = NULL;
 }

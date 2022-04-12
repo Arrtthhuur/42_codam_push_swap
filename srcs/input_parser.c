@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 16:08:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 14:30:23 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/12 14:53:08 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,4 @@ void	input_parser(char **argv, int argc, t_stack **stack)
 		stack_addfront(stack, array[i]);
 		i++;
 	}
-	stack_print(*stack);
 }

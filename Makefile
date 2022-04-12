@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/04/12 13:35:23 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/12 15:51:06 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SRCS		=	main.c \
 				ft_isspace.c \
 				stack_addfront.c \
 				stack_print.c \
+				swap.c \
+				rotate.c \
+				push.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -58,8 +61,7 @@ drun: all
 	lldb $(NAME) -- 1 2 5 4
 
 norm:
-	norminette srcs/main.c srcs/input_parser.c srcs/utils/ 
-	norminette srcs/operations includes/
+	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/
 
 test:
 	@$(MAKE) -C unit-tests

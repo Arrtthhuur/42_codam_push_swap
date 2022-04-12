@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 14:30:00 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/12 15:57:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ void		input_parser(char **argv, int argc, t_stack **stack);
 void		pancake_sort(int *arr, int n);
 void		print_array(int arr[], int n);
 
-// Stack related functions.
+// Operation functions.
+void		swap(t_stack **stack);
+void		rotate(t_stack **stack);
+void		push(t_stack **src, t_stack **dest);
+
+// Stack functions.
 void		stack_addfront(t_stack **s, int value);
-t_stack		*stack_reverse(t_stack *head);
-void		stack_print(t_stack *a);
+void		stack_print(t_stack *a, char stack);
 
 // Util functions.
 size_t		ft_strlen(const char *s);

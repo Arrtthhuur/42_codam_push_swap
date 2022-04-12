@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   stack_print.c                                      :+:    :+:            */
+/*   push.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/05 14:58:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 15:37:12 by abeznik       ########   odam.nl         */
+/*   Created: 2022/04/12 15:50:22 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/04/12 15:56:18 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#include <stdio.h>
+void	push(t_stack **src, t_stack **dest)
+{	
+	t_stack	*temp;
 
-void	stack_print(t_stack *a, char stack)
-{
-	while (a->next != NULL)
-	{
-		printf("%d\n", a->value);
-		a = a->next;
-	}
-	printf("%d", a->value);
-	printf("\n-\n%c\n\n", stack);
+	if (src == NULL)
+		return ;
+	temp = *src;
+	if (temp->next)
+		*src = temp->next;
+	else
+		*src = NULL;
+	temp->next = *dest;
+	*dest = temp;
 }
