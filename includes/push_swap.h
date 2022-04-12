@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/05 16:02:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/12 14:30:00 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 
 // Main functions.
 int			main(int argc, char **argv);
-void		input_parser(t_stack **a, char **argv);
+void		input_parser(char **argv, int argc, t_stack **stack);
 
 // Algorithm functions.
 void		pancake_sort(int *arr, int n);
@@ -46,6 +46,7 @@ int			ft_isdigit(int c);
 int			ft_isspace(int c);
 long long	ft_atoll(const char *str);
 int			ft_atoi(const char *str);
+int			*convert_int(char **argv, int len);
 
 // Exit succes or error message.
 int			error_msg(char *msg);

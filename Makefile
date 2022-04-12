@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/02/05 17:20:32 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/12 13:35:23 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ run: all
 	./$(NAME)
 
 drun: all
-	lldb $(NAME) -- 123 123
+	lldb $(NAME) -- 1 2 5 4
 
 norm:
 	norminette srcs/main.c srcs/input_parser.c srcs/utils/ 

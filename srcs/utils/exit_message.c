@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 12:53:25 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/12 11:17:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	success_msg(char *msg)
 void	error_exit(void)
 {
 	write(2, "Error\n", 7);
-	exit(1);
+	exit(EXIT_FAILURE);
 }

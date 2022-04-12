@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 16:08:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/05 16:02:03 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/12 14:30:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	check_only_int(char *value)
 	if (*value == '-')
 		value++;
 	if (!*value)
-		return (1);
+		return (EXIT_FAILURE);
 	while (*value)
 	{
 		if (!ft_isdigit(*value))
-			return (1);
+			return (EXIT_FAILURE);
 		value++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	check_bigger_int(char *value)
@@ -39,39 +39,71 @@ static int	check_bigger_int(char *value)
 	return (EXIT_SUCCESS);
 }
 
-static void	check_duplicates(t_stack *head)
+static int	*fill_array(char **argv, int len)
 {
-	t_stack	*curr;
-	t_stack	*tmp;
+	int		*array;
+	int		x;
+	int		y;
 
-	curr = head;
-	while (curr != NULL)
+	x = len - 1;
+	y = 0;
+	array = (int *) malloc((len) * sizeof(array));
+	if (!array)
+		return (NULL);
+	while (x > 0)
 	{
-		tmp = curr;
-		while (tmp->next != NULL)
-		{
-			if (curr->value == tmp->next->value)
-				error_exit();
-			tmp = tmp->next;
-		}
-		curr = curr->next;
+		array[y] = ft_atoi(argv[x]);
+		y++;
+		x--;
 	}
+	array[y] = '\0';
+	return (array);
 }
 
-void	input_parser(t_stack **a, char **argv)
+static int	check_duplicates(int *array, int argc)
 {
 	int	i;
+	int	x;
+
+	i = 0;
+	while (argc > i)
+	{
+		x = i - 1;
+		while (x >= 0)
+		{
+			if (array[x] == array[i])
+				return (EXIT_FAILURE);
+			x--;
+		}
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+void	input_parser(char **argv, int argc, t_stack **stack)
+{
+	int	i;
+	int	*array;
 
 	i = 1;
-	while (argv[i])
+	while (argv[i] != '\0')
 	{
 		if (check_only_int(argv[i]))
 			error_exit();
 		if (check_bigger_int(argv[i]))
 			error_exit();
-		stack_addfront(a, ft_atoi(argv[i]));
 		i++;
 	}
-	check_duplicates(*a);
-	*a = stack_reverse(*a);
+	array = fill_array(argv, argc);
+	if (!array)
+		error_exit();
+	if (check_duplicates(array, argc - 1))
+		error_exit();
+	i = 0;
+	while (i < argc - 1)
+	{
+		stack_addfront(stack, array[i]);
+		i++;
+	}
+	stack_print(*stack);
 }
