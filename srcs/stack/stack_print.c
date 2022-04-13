@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/05 14:58:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 15:37:12 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/13 16:11:50 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include <stdio.h>
 
-void	stack_print(t_stack *a, char stack)
+void	stack_print(t_stack *s)
 {
-	while (a->next != NULL)
+	while (s->next != NULL)
 	{
-		printf("%d\n", a->value);
-		a = a->next;
+		ft_printf("[%d]: %d\n", s->index, s->value);
+		s = s->next;
 	}
-	printf("%d", a->value);
-	printf("\n-\n%c\n\n", stack);
+	ft_printf("[%d]: %d\n", s->index, s->value);
+	ft_printf("     -\n     a\n\n");
 }

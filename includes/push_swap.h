@@ -6,12 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 15:57:58 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/13 16:06:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "../srcs/ft_printf/includes/libftprintf.h"
 
 # include <stdlib.h> // EXIT_
 # include <stddef.h> // size_t
@@ -22,6 +24,7 @@
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -32,6 +35,8 @@ void		input_parser(char **argv, int argc, t_stack **stack);
 // Algorithm functions.
 void		pancake_sort(int *arr, int n);
 void		print_array(int arr[], int n);
+int			get_max(t_stack **stack);
+void 		radix_sort(t_stack *a, t_stack *b, size_t len);
 
 // Operation functions.
 void		swap(t_stack **stack);
@@ -39,8 +44,9 @@ void		rotate(t_stack **stack);
 void		push(t_stack **src, t_stack **dest);
 
 // Stack functions.
-void		stack_addfront(t_stack **s, int value);
-void		stack_print(t_stack *a, char stack);
+void		stack_addfront(t_stack **s, int value, int index);
+void		stack_print(t_stack *s);
+size_t		stack_len(t_stack **stack);
 
 // Util functions.
 size_t		ft_strlen(const char *s);

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   stack_addfront.c                                   :+:    :+:            */
+/*   get_max.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/03 13:46:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 16:06:38 by abeznik       ########   odam.nl         */
+/*   Created: 2022/04/13 10:44:49 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/04/13 13:00:50 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	stack_addfront(t_stack **s, int value, int index)
+int	get_max(t_stack **stack)
 {
-	t_stack	*new;
+	t_stack	*tmp;
+	int		max;
 
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		error_exit();
-	new->value = value;
-	new->index = index;
-	new->next = *s;
-	*s = new;
+	tmp = *stack;
+	max = INT_MIN;
+	while (tmp->next != NULL)
+	{
+		if (max < tmp->value)
+			max = tmp->value;
+		tmp = tmp->next;
+	}
+	return (max);
 }

@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/04/12 15:51:06 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/13 16:28:23 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ INCL_DIR	:=	includes
 SRCS_DIR	:=	srcs
 OBJ_DIR		:=	objs
 VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
+LIBFTPRINTF	:=	libftprintf.a
 
 # Srcs
 SRCS		=	main.c \
@@ -32,10 +33,12 @@ SRCS		=	main.c \
 				ft_atoll.c \
 				ft_isspace.c \
 				stack_addfront.c \
+				stack_len.c \
 				stack_print.c \
 				swap.c \
 				rotate.c \
 				push.c \
+				get_max.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -46,7 +49,12 @@ FLAGS		:=	-Wall -Wextra -g #-Werror || annoying during development
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-	@$(CC) $(OBJS) $(FLAGS) -o $(NAME)
+	@echo "Making libftprintf.a"
+	@make -C $(SRCS_DIR)/ft_printf
+	@echo "Copying libftprintf.a to push_swap dir"
+	@cp $(SRCS_DIR)/ft_printf/$(LIBFTPRINTF) .
+	@echo "Compiling srcs with newly created archive"
+	@$(CC) $(LIBFTPRINTF) $(OBJS) $(FLAGS) -o $(NAME)
 	@echo success!
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
@@ -76,9 +84,11 @@ echo:
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(NAME)
+	make fclean -C $(SRCS_DIR)/ft_printf
 
 fclean:	clean
 	@rm -f $(NAME)
+	@rm libftprintf.a
 
 re:	fclean all
 
