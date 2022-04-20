@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/04/13 16:28:23 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/20 15:33:12 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ LIBFTPRINTF	:=	libftprintf.a
 SRCS		=	main.c \
 				input_parser.c \
 				radix_sort.c \
-				pancake.c \
 				exit_message.c \
 				ft_split.c \
 				ft_strlen.c \
@@ -38,7 +37,9 @@ SRCS		=	main.c \
 				swap.c \
 				rotate.c \
 				push.c \
-				get_max.c \
+				min_max.c \
+				is_sorted.c \
+				sort_3.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -66,7 +67,7 @@ run: all
 	./$(NAME)
 
 drun: all
-	lldb $(NAME) -- 1 2 5 4
+	lldb $(NAME) -- 588 1 8 4 7
 
 norm:
 	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/

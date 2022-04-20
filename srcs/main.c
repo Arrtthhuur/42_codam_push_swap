@@ -6,41 +6,58 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:54:11 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 16:25:34 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/20 14:31:54 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#include <stdio.h>
+/*
+** Applies sorting algorithm based on length of stack a.
+*/
+static void	apply_sort(t_stack **a, t_stack **b)
+{
+	int	s_len;
+	int	min;
+	int	max;
+
+	s_len = stack_len(a);
+	min = get_min(a);
+	max = get_max(a);
+	if (s_len == 2)
+		swap(a, STACK_A);
+	else if (s_len == 3)
+		sort_3(a, min, max);
+	// else if (s_len == 4 || s_len == 5)
+	// 	sort_45(a, b);
+	else
+		radix_sort(a, b);
+}
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		max;
-	size_t	s_len;
 
 	if (argc == 1)
 		return (EXIT_FAILURE);
 	stack_a = NULL;
 	stack_b = NULL;
 	input_parser(argv, argc, &stack_a);
-	s_len = stack_len(&stack_a);
-	stack_print(stack_a);
-	radix_sort(stack_a, stack_b, s_len);
-	// stack_print(stack_a);
-	swap(&stack_a);
-	// stack_print(stack_a, stack_b);
-	rotate(&stack_a);
-	// stack_print(stack_a, stack_b);
-	max = get_max(&stack_a);
-	printf("max_a = %d\n", max);
-	printf("len = %zu\n\n", stack_len(&stack_a));
-	push(&stack_a, &stack_b);
-	// stack_print(stack_a, stack_b);
-	push(&stack_a, &stack_b);
-	// stack_print(stack_a, stack_b);
-	push(&stack_a, &stack_b);
-	return (EXIT_SUCCESS);
+	if (is_sorted(&stack_a) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
+	apply_sort(&stack_a, &stack_b);
+	if (is_sorted(&stack_a) == EXIT_SUCCESS)
+	{
+		ft_printf("\n");
+		ft_printf("\tSORTED\n");
+		stack_print(stack_a, STACK_A);
+		// system("leaks push_swap");
+		return (EXIT_SUCCESS);
+	}
+	ft_printf("\n");
+	ft_printf("\tNOT SORTED!\n");
+	stack_print(stack_a, STACK_A);
+	// system("leaks push_swap");
+	return (EXIT_FAILURE);
 }

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   swap.c                                             :+:    :+:            */
+/*   is_sorted.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/03 14:32:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:02:52 by abeznik       ########   odam.nl         */
+/*   Created: 2022/04/14 11:23:17 by abeznik       #+#    #+#                 */
+/*   Updated: 2022/04/18 14:44:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /*
-** Swap the first 2 elements at the top of stack a.
-** 		Do nothing if there is only one or no elements.
+** Checks whether stack is sorted or not.
 */
-void	swap(t_stack **stack, char stack_name)
+int	is_sorted(t_stack **stack)
 {
-	t_stack	*elem1;
-	t_stack	*elem2;
+	t_stack	*tmp;
 
-	elem1 = *stack;
-	elem2 = elem1->next;
-	if (!elem1 || !elem2)
-		return ;
-	elem1->next = elem1->next->next;
-	elem2->next = elem1;
-	*stack = elem2;
-	ft_printf("s");
-	ft_printf("%c\n", stack_name);
+	tmp = *stack;
+	while (tmp->next != NULL)
+	{
+		if (tmp->value > tmp->next->value)
+			return (EXIT_FAILURE);
+		tmp = tmp->next;
+	}
+	return (EXIT_SUCCESS);
 }

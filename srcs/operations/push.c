@@ -6,13 +6,17 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/12 15:50:22 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 10:18:09 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/18 14:03:00 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push(t_stack **src, t_stack **dest)
+/*
+** Take the first element at the top of src and put it at the top of dst.
+** 		Do nothing if src is empty.
+*/
+void	push(t_stack **src, t_stack **dst, char stack_name)
 {	
 	t_stack	*temp;
 
@@ -23,6 +27,8 @@ void	push(t_stack **src, t_stack **dest)
 		*src = temp->next;
 	else
 		*src = NULL;
-	temp->next = *dest;
-	*dest = temp;
+	temp->next = *dst;
+	*dst = temp;
+	ft_printf("p");
+	ft_printf("%c\n", stack_name);
 }

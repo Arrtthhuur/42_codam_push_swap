@@ -6,21 +6,27 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/05 14:58:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 16:11:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/18 14:46:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#include <stdio.h>
-
-void	stack_print(t_stack *s)
+/*
+** Prints stack (index + value) and displays stack name at the bottom.
+*/
+void	stack_print(t_stack *s, char stack_name)
 {
-	while (s->next != NULL)
+	t_stack	*tmp;
+
+	tmp = s;
+	if (!tmp)
+		return ;
+	while (tmp->next != NULL)
 	{
-		ft_printf("[%d]: %d\n", s->index, s->value);
-		s = s->next;
+		ft_printf("[%d]: %d\n", tmp->index, tmp->value);
+		tmp = tmp->next;
 	}
-	ft_printf("[%d]: %d\n", s->index, s->value);
-	ft_printf("     -\n     a\n\n");
+	ft_printf("[%d]: %d\n", tmp->index, tmp->value);
+	ft_printf("     -\n     %c\n\n", stack_name);
 }

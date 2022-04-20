@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 16:06:48 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/20 14:33:00 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+# define STACK_A 'a'
+# define STACK_B 'b'
+
 typedef struct s_stack
 {
 	int				value;
@@ -33,20 +36,23 @@ int			main(int argc, char **argv);
 void		input_parser(char **argv, int argc, t_stack **stack);
 
 // Algorithm functions.
-void		pancake_sort(int *arr, int n);
-void		print_array(int arr[], int n);
-int			get_max(t_stack **stack);
-void 		radix_sort(t_stack *a, t_stack *b, size_t len);
+void		sort_3(t_stack **stack, int min, int max);
+void		sort_45(t_stack **a, t_stack **b);
+void 		radix_sort(t_stack **a, t_stack **b);
 
 // Operation functions.
-void		swap(t_stack **stack);
-void		rotate(t_stack **stack);
-void		push(t_stack **src, t_stack **dest);
+void		swap(t_stack **stack, char stack_name);
+void		rotate(t_stack **stack, char stack_name);
+void		rev_rotate(t_stack **stack, char stack_name);
+void		push(t_stack **src, t_stack **dest, char stack_name);
 
 // Stack functions.
 void		stack_addfront(t_stack **s, int value, int index);
-void		stack_print(t_stack *s);
-size_t		stack_len(t_stack **stack);
+void		stack_print(t_stack *s, char stack_name);
+int			stack_len(t_stack **stack);
+int			is_sorted(t_stack **stack);
+int			get_min(t_stack **stack);
+int			get_max(t_stack **stack);
 
 // Util functions.
 size_t		ft_strlen(const char *s);

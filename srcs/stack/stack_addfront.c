@@ -6,12 +6,16 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 13:46:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/13 16:06:38 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/18 14:45:15 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+/*
+** Adds a new element to the front of the stack.
+**		Sets value and index of new element.
+*/
 void	stack_addfront(t_stack **s, int value, int index)
 {
 	t_stack	*new;
