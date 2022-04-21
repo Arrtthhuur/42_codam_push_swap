@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/12 15:50:22 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:03:00 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/21 11:37:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Take the first element at the top of src and put it at the top of dst.
 ** 		Do nothing if src is empty.
 */
-void	push(t_stack **src, t_stack **dst, char stack_name)
+void	push(t_stack **dst, t_stack **src, char stack_dest)
 {	
 	t_stack	*temp;
 
@@ -30,5 +30,5 @@ void	push(t_stack **src, t_stack **dst, char stack_name)
 	temp->next = *dst;
 	*dst = temp;
 	ft_printf("p");
-	ft_printf("%c\n", stack_name);
+	ft_printf("%c\n", stack_dest);
 }

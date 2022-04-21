@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/20 14:33:00 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/21 13:41:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void 		radix_sort(t_stack **a, t_stack **b);
 void		swap(t_stack **stack, char stack_name);
 void		rotate(t_stack **stack, char stack_name);
 void		rev_rotate(t_stack **stack, char stack_name);
-void		push(t_stack **src, t_stack **dest, char stack_name);
+void		push(t_stack **dst, t_stack **src, char stack_dest);
 
 // Stack functions.
 void		stack_addfront(t_stack **s, int value, int index);

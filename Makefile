@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/04/20 15:33:12 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/21 17:54:11 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS		=	main.c \
 				min_max.c \
 				is_sorted.c \
 				sort_3.c \
+				sort_45.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -67,7 +68,7 @@ run: all
 	./$(NAME)
 
 drun: all
-	lldb $(NAME) -- 588 1 8 4 7
+	lldb $(NAME) -- 588 1 8 4
 
 norm:
 	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/

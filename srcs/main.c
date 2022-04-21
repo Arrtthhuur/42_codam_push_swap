@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:54:11 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/20 14:31:54 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/21 18:22:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Applies sorting algorithm based on length of stack a.
 */
-static void	apply_sort(t_stack **a, t_stack **b)
+void	apply_sort(t_stack **a, t_stack **b)
 {
 	int	s_len;
 	int	min;
@@ -28,8 +28,8 @@ static void	apply_sort(t_stack **a, t_stack **b)
 		swap(a, STACK_A);
 	else if (s_len == 3)
 		sort_3(a, min, max);
-	// else if (s_len == 4 || s_len == 5)
-	// 	sort_45(a, b);
+	else if (s_len == 4 || s_len == 5)
+		sort_45(a, b);
 	else
 		radix_sort(a, b);
 }
@@ -49,15 +49,13 @@ int	main(int argc, char **argv)
 	apply_sort(&stack_a, &stack_b);
 	if (is_sorted(&stack_a) == EXIT_SUCCESS)
 	{
-		ft_printf("\n");
-		ft_printf("\tSORTED\n");
-		stack_print(stack_a, STACK_A);
+		// ft_printf("\n\tSORTED\n");
+		// stack_print(stack_a, STACK_A);
 		// system("leaks push_swap");
 		return (EXIT_SUCCESS);
 	}
-	ft_printf("\n");
-	ft_printf("\tNOT SORTED!\n");
-	stack_print(stack_a, STACK_A);
+	// ft_printf("\n\tNOT SORTED!\n");
+	// stack_print(stack_a, STACK_A);
 	// system("leaks push_swap");
 	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 15:12:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/20 15:32:19 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/21 18:26:19 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ static void		delete_max(t_stack **a, t_stack **b, int max)
 	prev->next = tmp->next;
 	// free(tmp);
 }
-
-// static void		push_max(t_stack **tmp, t_stack **b)
-// {
-	
-// }
 
 void	radix_sort(t_stack **a, t_stack **b)
 {

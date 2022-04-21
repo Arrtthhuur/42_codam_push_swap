@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/14 11:37:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:46:43 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/04/21 14:26:31 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@
 */
 static int	check_sorting_case(t_stack *stack, int min, int max)
 {
+	int	s_len;
+	int	count;
+
+	s_len = stack_len(&stack);
+	count = 0;
 	while (stack->next != NULL)
 	{
-		if (stack->value == max && stack->index == 2)
+		if (stack->value == max && count == 0)
 			if (stack->next->value == min)
 				return (2);
-		if (stack->value == max && stack->index == 1)
+		if (stack->value == max && count == 1)
 		{
 			if (stack->next->value != min)
 				return (3);
@@ -36,6 +41,7 @@ static int	check_sorting_case(t_stack *stack, int min, int max)
 			else
 				return (6);
 		}
+		count++;
 		stack = stack->next;
 	}
 	return (EXIT_FAILURE);
@@ -43,6 +49,7 @@ static int	check_sorting_case(t_stack *stack, int min, int max)
 
 /*
 ** Sorts stack of 3 elements.
+**		123, 132, 213, 231, 312, 321
 */
 void	sort_3(t_stack **stack, int min, int max)
 {
@@ -50,22 +57,31 @@ void	sort_3(t_stack **stack, int min, int max)
 
 	s_case = check_sorting_case(*stack, min, max);
 	if (s_case == 2)
+	{
+		// 312
 		rotate(stack, STACK_A);
+	}
 	if (s_case == 3)
 	{
+		// 132
 		swap(stack, STACK_A);
 		rotate(stack, STACK_A);
 	}
 	if (s_case == 4)
 	{
+		// 231
 		rotate(stack, STACK_A);
 		rotate(stack, STACK_A);
 	}
 	if (s_case == 5)
 	{
+		// 321
 		rotate(stack, STACK_A);
 		swap(stack, STACK_A);
 	}
 	if (s_case == 6)
+	{
+		// 213
 		swap(stack, STACK_A);
+	}
 }
