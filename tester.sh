@@ -37,9 +37,9 @@ check()
     # Check message from checker
     exit_msg=`cat check_out`
     if [[ "$exit_msg" == "OK" ]]; then
-        echo -e "Checker says: ${GREEN}$exit_msg${DEF}"
-    elif [[ -s check_out ]]; then
-        echo -e "Checker says: ${RED}Error${DEF}"
+        echo -e "${GREEN}$exit_msg${DEF}"
+    else
+        echo -e "${RED}Error${DEF}"
     fi
 
     # Delete created tmp files
@@ -118,10 +118,10 @@ if [[ $own_tests == "0" ]]; then
 
     # #====================================
     # # Middle Version
-    # echo "Middle Version"
-    # echo "--------------"
+    echo "Middle Version"
+    echo "--------------"
 
-    # ## Test 1 - 100 random values
+    ## Test 1 - 100 random values
     # generate_random 100
     # ARG="$randomNumber"
     # run $ARG
