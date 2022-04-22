@@ -32,10 +32,10 @@ run()
 # Run push_swap against checker
 check()
 {
-    ./push_swap $ARG | ./checker_Mac $ARG > check_out
+    ./push_swap $ARG | ./checker_Mac $ARG > out_tmp
 
     # Check message from checker
-    exit_msg=`cat check_out`
+    exit_msg=$(cat out_tmp)
     if [[ "$exit_msg" == "OK" ]]; then
         echo -e "${GREEN}$exit_msg${DEF}"
     else
@@ -43,22 +43,49 @@ check()
     fi
 
     # Delete created tmp files
-    if [[ -f check_out ]]; then
-        rm -f check_out
+    if [[ -f out_tmp ]]; then
+        rm -f out_tmp
     fi
-    echo ""
 }
 
 # Generate n number of random numbers
 generate_random()
 {
-    for n in `seq "$1"`
+    max=2147483648
+    min=-2147483648
+    unset rand_nb
+    until_last=$(($1-1));
+    for n in `seq "$until_last"`
     do
-    randomNumber+="$RANDOM "
-    # echo $randomNumber
+        rand_nb+=$(jot -w  %i -r 1 $min $max)
+        # rand_nb+=$(($RANDOM % $max + $min))
+        rand_nb+=" "
     done
+    # rand_nb+="$RANDOM"
+    rand_nb+=$(jot -w  %i -r 1 $min $max)
+    var=$(echo "$rand_nb" | wc -w)
+    echo "$var random values generated"
 }
 
+
+nb_op()
+{
+    var=$(./push_swap $ARG | wc -l)
+    # var=$(echo "" | wc -w)
+    # count=$(wc -l op_tmp)
+    echo "$var operations"
+    # if [[ -f op_tmp ]]; then
+    #     rm -f op_tmp
+    # fi
+    echo ""
+}
+
+ps()
+{
+    run $ARG
+    check $ARG
+    nb_op $ARG
+}
 
 #====================================
 # Eval Sheet Tests
@@ -71,20 +98,19 @@ if [[ $own_tests == "0" ]]; then
 
     ## Test 1 - 42
     ARG="42"
-    run $ARG
-    check $ARG
+    # run $ARG
+    # check $ARG
+    ps $ARG
 
 
     ## Test 2 - 0 1 2 3
     ARG="0 1 2 3"
-    run $ARG
-    check $ARG
+    ps $ARG
 
 
     ## Test 3 -  0 1 2 3 4 5 6 7 8 9
     ARG="0 1 2 3 4 5 6 7 8 9"
-    run $ARG
-    check $ARG
+    ps $ARG
 
 
     #====================================
@@ -94,8 +120,7 @@ if [[ $own_tests == "0" ]]; then
 
     ## Test 1 - 2 1 0
     ARG="2 1 0"
-    run $ARG
-    check $ARG
+    ps $ARG
 
 
     #====================================
@@ -105,27 +130,24 @@ if [[ $own_tests == "0" ]]; then
 
     ## Test 1 - 1 5 2 4 3
     ARG="1 5 2 4 3"
-    run $ARG
-    check $ARG
+    ps $ARG
 
 
     ## Test 2 - 5 random values
     generate_random 5
-    ARG="$randomNumber"
-    run $ARG
-    check $ARG
+    ARG="$rand_nb"
+    ps $ARG
 
 
     # #====================================
     # # Middle Version
-    echo "Middle Version"
-    echo "--------------"
+    echo "Middle Version - 100 random values"
+    echo "----------------------------------"
 
-    ## Test 1 - 100 random values
-    # generate_random 100
-    # ARG="$randomNumber"
-    # run $ARG
-    # check $ARG
+    # Test 1 - 100 random values
+    generate_random 100
+    ARG="$rand_nb"
+    ps $ARG
 
 
     # #====================================
@@ -150,52 +172,57 @@ if [[ $own_tests == "1" ]]; then
 
     ## Test 1 - 42
     ARG="42"
-    run $ARG
-    check $ARG
-
+    ps $ARG
 
     ## Test 2 - 1 0 [1/2]
     ARG="1 0"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 3 -  0 1 [2/2]
     ARG="0 1"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 4 -  0 1 2 [1/6]
     ARG="0 1 2"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 5 -  0 2 1 [2/6]
     ARG="0 2 1"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 6 -  1 0 2 [3/6]
     ARG="1 0 2"
-    run $ARG
-    check $ARG
-
+    ps $ARG
     ## Test 7 -  1 2 0 [4/6]
     ARG="1 2 0"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 8 -  2 0 1 [5/6]
     ARG="2 0 1"
-    run $ARG
-    check $ARG
+    ps $ARG
 
     ## Test 9 -  2 1 0 [6/6]
     ARG="2 1 0"
-    run $ARG
-    check $ARG
+    ps $ARG
 
-    ## Test 10 -  3 2 1 0
+    ## Test 10 - Not int
+    ARG="1 hallo 2"
+    ps $ARG
+
+    ## Test 11 - Bigger than int
+    ARG="1 999999999999999999 2"
+    ps $ARG
+
+    ## Test 12 - Duplicates
+    ARG="1 2 2"
+    ps $ARG
+
+    ## Test  -  3 2 1 0
     ARG="3 2 1 0"
-    run $ARG
-    check $ARG
+    ps $ARG
+
+    ## Test
+    generate_random 5
+    ARG="$rand_nb"
+    ps $ARG
 fi
