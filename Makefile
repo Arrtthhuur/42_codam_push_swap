@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/04/21 17:54:11 by abeznik       ########   odam.nl          #
+#    Updated: 2022/04/26 17:36:01 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ $(NAME):	$(OBJS)
 	@echo "Copying libftprintf.a to push_swap dir"
 	@cp $(SRCS_DIR)/ft_printf/$(LIBFTPRINTF) .
 	@echo "Compiling srcs with newly created archive"
-	@$(CC) $(LIBFTPRINTF) $(OBJS) $(FLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(FLAGS) -o $(NAME) $(LIBFTPRINTF)
 	@echo success!
 
 $(OBJ_DIR)/%.o: $(notdir %.c)

@@ -8,10 +8,12 @@ GREEN="\033[0;32m"
 DEF="\033[0m"
 
 # Program input
-if [[ "$1" == "mine" ]]; then
-	own_tests="1"
+if [[ "$1" == "m" ]]; then
+	tests="0"
+elif [[ "$1" == "t" ]]; then
+    tests="2"
 else
-	own_tests="0"
+	tests="1"
 fi
 
 # Check for push_swap executable
@@ -30,9 +32,9 @@ run()
 }
 
 # Run push_swap against checker
-check()
+checker()
 {
-    ./push_swap $ARG | ./checker_Mac $ARG > out_tmp
+    ./push_swap $ARG | ./checker_linux $ARG > out_tmp
 
     # Check message from checker
     exit_msg=$(cat out_tmp)
@@ -48,6 +50,20 @@ check()
     fi
 }
 
+# Run error cases
+check_error()
+{
+    echo "* Testing ARG=\"$ARG\""
+    unset var
+    var=$(./push_swap $ARG | wc -l)
+    if [[ "$var" == "0" ]]; then
+        echo -e "${GREEN}OK${DEF}"
+    else
+        echo -e "${RED}Error${DEF}"
+    fi
+    echo ""
+}
+
 # Generate n number of random numbers
 generate_random()
 {
@@ -57,39 +73,44 @@ generate_random()
     until_last=$(($1-1));
     for n in `seq "$until_last"`
     do
-        rand_nb+=$(jot -w  %i -r 1 $min $max)
-        # rand_nb+=$(($RANDOM % $max + $min))
+        # rand_nb+=$(jot -w  %i -r 1 $min $max)
+        rand_nb+=$(($RANDOM % $max + $min))
         rand_nb+=" "
     done
-    # rand_nb+="$RANDOM"
-    rand_nb+=$(jot -w  %i -r 1 $min $max)
+    rand_nb+=$(($RANDOM % $max + $min))
+    # rand_nb+=$(jot -w  %i -r 1 $min $max)
+    unset var
     var=$(echo "$rand_nb" | wc -w)
     echo "$var random values generated"
 }
 
-
+# Compute number of operations
 nb_op()
 {
+    unset var
     var=$(./push_swap $ARG | wc -l)
-    # var=$(echo "" | wc -w)
-    # count=$(wc -l op_tmp)
     echo "$var operations"
-    # if [[ -f op_tmp ]]; then
-    #     rm -f op_tmp
-    # fi
     echo ""
 }
 
+# Run, checker and nb operations
 ps()
 {
     run $ARG
-    check $ARG
+    checker $ARG
     nb_op $ARG
 }
 
 #====================================
+# Testing
+if [[ $tests == "2" ]]; then
+    echo "Add tests"
+fi
+
+
+#====================================
 # Eval Sheet Tests
-if [[ $own_tests == "0" ]]; then
+if [[ $tests == "1" ]]; then
     #====================================
     # Identity Test
     echo ""
@@ -163,9 +184,10 @@ if [[ $own_tests == "0" ]]; then
 
 fi
 
+
 #====================================
 # My Tests
-if [[ $own_tests == "1" ]]; then
+if [[ $tests == "0" ]]; then
     echo ""
     echo "My Tests"
     echo "-------------"
@@ -207,15 +229,27 @@ if [[ $own_tests == "1" ]]; then
 
     ## Test 10 - Not int
     ARG="1 hallo 2"
-    ps $ARG
+    check_error $ARG
 
     ## Test 11 - Bigger than int
     ARG="1 999999999999999999 2"
-    ps $ARG
+    check_error $ARG
 
-    ## Test 12 - Duplicates
+    ## Test 12 - Smaller than int
+    ARG="1 -999999999999999999 2"
+    check_error $ARG
+
+    ## Test 13 - Duplicates
     ARG="1 2 2"
-    ps $ARG
+    check_error $ARG
+
+    ## Test 14 - No input
+    ARG="     "
+    check_error $ARG
+
+    ## Test 14 - No input
+    ARG="-+10 --7 +-5"
+    check_error $ARG
 
     ## Test  -  3 2 1 0
     ARG="3 2 1 0"
