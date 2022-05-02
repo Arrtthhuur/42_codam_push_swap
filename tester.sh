@@ -34,7 +34,7 @@ run()
 # Run push_swap against checker
 checker()
 {
-    ./push_swap $ARG | ./checker_linux $ARG > out_tmp
+    ./push_swap $ARG | ./checker_Mac $ARG > out_tmp
 
     # Check message from checker
     exit_msg=$(cat out_tmp)
