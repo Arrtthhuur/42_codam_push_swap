@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/02 15:39:06 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/04 15:51:05 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS		=	checker.c \
 				exit_message.c \
 				ft_split.c \
 				ft_strlen.c \
+				ft_strncmp.c \
 				ft_substr.c \
 				ft_isdigit.c \
 				ft_atoi.c \
@@ -69,7 +70,7 @@ run: all
 	./$(NAME)
 
 drun: all
-	lldb $(NAME) -- 588 1 8 4
+	lldb $(NAME) -- 0 9 1 8 2 7 3 6 4 5
 
 norm:
 	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/

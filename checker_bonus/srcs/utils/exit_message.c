@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:37:43 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/04 11:37:53 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,16 @@ void	error_exit(void)
 {
 	write(2, "Error\n", 7);
 	exit(EXIT_FAILURE);
+}
+
+int	success_exit(void)
+{
+	write(1, "OK\n", 4);
+	return (EXIT_SUCCESS);
+}
+
+int	failure_exit(void)
+{
+	write(1, "KO\n", 4);
+	return (EXIT_FAILURE);
 }

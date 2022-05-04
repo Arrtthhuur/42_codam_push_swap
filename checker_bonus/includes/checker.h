@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/02 14:29:42 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:47:31 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/04 16:07:28 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <stdlib.h> // EXIT_
 # include <stddef.h> // size_t
 
-#include <sys/types.h> // read
-#include <sys/uio.h> // read
-#include <unistd.h> // read
+# include <sys/types.h> // read
+# include <sys/uio.h> // read
+# include <unistd.h> // read
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -42,13 +42,13 @@ void		input_parser(char **argv, int argc, t_stack **stack);
 // Algorithm functions.
 void		sort_3(t_stack **stack, int min, int max);
 void		sort_45(t_stack **a, t_stack **b);
-void 		radix_sort(t_stack **a, t_stack **b);
+void		radix_sort(t_stack **a, t_stack **b);
 
 // Operation functions.
-void		swap(t_stack **stack, char stack_name);
-void		rotate(t_stack **stack, char stack_name);
-void		rev_rotate(t_stack **stack, char stack_name);
-void		push(t_stack **dst, t_stack **src, char stack_dest);
+void		swap(t_stack **stack);
+void		rotate(t_stack **stack);
+void		rev_rotate(t_stack **stack);
+void		push(t_stack **dst, t_stack **src);
 
 // Stack functions.
 void		stack_addfront(t_stack **s, int value, int index);
@@ -62,6 +62,7 @@ int			get_max(t_stack **stack);
 size_t		ft_strlen(const char *s);
 char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_isdigit(int c);
 int			ft_isspace(int c);
 long long	ft_atoll(const char *str);
@@ -72,5 +73,7 @@ int			*convert_int(char **argv, int len);
 int			error_msg(char *msg);
 int			success_msg(char *msg);
 void		error_exit(void);
+int			success_exit(void);
+int			failure_exit(void);
 
 #endif

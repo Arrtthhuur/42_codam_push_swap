@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:54:11 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/22 15:14:44 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/04 11:45:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	apply_sort(t_stack **a, t_stack **b)
 		radix_sort(a, b);
 }
 
+/*
+** Main function.
+*/
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
