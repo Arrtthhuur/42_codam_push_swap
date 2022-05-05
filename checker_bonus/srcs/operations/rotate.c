@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/12 15:37:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/04 16:01:37 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 10:45:14 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	rotate(t_stack **stack)
 		last = last->next;
 	last->next = first;
 	first->next = NULL;
-	// ft_printf("r");
-	// ft_printf("%c\n", stack_name);
 }
 
 /*
 ** Shift down all elements of stack a by 1.
-** 		The last element becomes the first one.
+** 		The last element becomes the first one. !!!!!! stack_len shit !!!!
 */
 void	rev_rotate(t_stack **stack)
 {
@@ -54,6 +52,4 @@ void	rev_rotate(t_stack **stack)
 	tmp->next = first;
 	*stack = tmp;
 	last->next = NULL;
-	// ft_printf("rr");
-	// ft_printf("%c\n", stack_name);
 }

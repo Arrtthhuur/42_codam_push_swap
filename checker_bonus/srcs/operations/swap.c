@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 14:32:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/04 15:47:04 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 10:45:05 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,4 @@ void	swap(t_stack **stack)
 	elem1->next = elem1->next->next;
 	elem2->next = elem1;
 	*stack = elem2;
-	// ft_printf("s");
-	// ft_printf("%c\n", stack_name);
 }

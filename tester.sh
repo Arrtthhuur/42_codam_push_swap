@@ -5,6 +5,7 @@
 # Colours
 RED="\033[0;31m"
 GREEN="\033[0;32m"
+BLUE="\033[0;36m"
 DEF="\033[0m"
 
 # Program input
@@ -12,8 +13,10 @@ if [[ "$1" == "m" ]]; then
 	tests="0"
 elif [[ "$1" == "t" ]]; then
     tests="2"
+elif [[ "$1" == "c" ]]; then
+	tests="3"
 else
-	tests="1"
+    tests="1"
 fi
 
 # Check for push_swap executable
@@ -24,6 +27,16 @@ else
 	exit 1
 fi
 
+
+# Check for checker executable
+if [[ -f checker_bonus/checker ]]; then
+	checker="./checker"
+else
+	echo -e "${RED}ERROR${DEF}: No checker executable found."
+	exit 1
+fi
+
+
 # Run push_swap
 run()
 {
@@ -31,8 +44,16 @@ run()
     "$push_swap" $ARG
 }
 
+# Run checker bonus
+run_c()
+{
+    echo "* Testing with ARG=\"$ARG\""
+    "$checker" $ARG
+    echo ""
+}
+
 # Run push_swap against checker
-checker()
+vs_checker()
 {
     ./push_swap $ARG | ./checker_Mac $ARG > out_tmp
 
@@ -97,7 +118,7 @@ nb_op()
 ps()
 {
     run $ARG
-    checker $ARG
+    vs_checker $ARG
     nb_op $ARG
 }
 
@@ -114,8 +135,8 @@ if [[ $tests == "1" ]]; then
     #====================================
     # Identity Test
     echo ""
-    echo "Identity Test"
-    echo "-------------"
+    echo -e "${BLUE}Identity Test"
+    echo -e "-------------${DEF}"
 
     ## Test 1 - 42
     ARG="42"
@@ -136,8 +157,8 @@ if [[ $tests == "1" ]]; then
 
     #====================================
     # Simple Version
-    echo "Simple Version"
-    echo "--------------"
+    echo -e "${BLUE}Simple Version"
+    echo -e "--------------${DEF}"
 
     ## Test 1 - 2 1 0
     ARG="2 1 0"
@@ -146,8 +167,8 @@ if [[ $tests == "1" ]]; then
 
     #====================================
     # Another Simple Version
-    echo "Another Simple Version"
-    echo "----------------------"
+    echo -e "${BLUE}Another Simple Version"
+    echo -e "----------------------${DEF}"
 
     ## Test 1 - 1 5 2 4 3
     ARG="1 5 2 4 3"
@@ -162,8 +183,8 @@ if [[ $tests == "1" ]]; then
 
     # #====================================
     # # Middle Version
-    echo "Middle Version - 100 random values"
-    echo "----------------------------------"
+    echo -e "${BLUE}Middle Version - 100 random values"
+    echo -e "----------------------------------${DEF}"
 
     # Test 1 - 100 random values
     generate_random 100
@@ -189,8 +210,8 @@ fi
 # My Tests
 if [[ $tests == "0" ]]; then
     echo ""
-    echo "My Tests"
-    echo "-------------"
+    echo -e "${BLUE}My Tests"
+    echo -e "-------------${DEF}"
 
     ## Test 1 - 42
     ARG="42"
@@ -259,4 +280,67 @@ if [[ $tests == "0" ]]; then
     generate_random 5
     ARG="$rand_nb"
     ps $ARG
+fi
+
+
+#====================================
+# Checker bonus
+if [[ $tests == "3" ]]; then
+    cd checker_bonus/
+    echo ""
+    echo -e "${BLUE}Checker Program - Error Management"
+    echo -e "--------------------------------${DEF}"
+
+    ## Test 1 - Non numeric => KO
+    ARG="hallo un deux"
+    run_c $ARG
+
+    ## Test 2 - Duplicates => KO
+    ARG="1 3 1"
+    run_c $ARG
+
+    ## Test 3 - Greater than MAX_INT => KO
+    ARG="1 9999999999999999999 1"
+    run_c $ARG
+
+    ## Test 4 - Greater than MAX_INT => nothing + give prompt back
+    ARG=""
+    run_c $ARG
+
+    ## Test 5 - Valid parameters + incorrect operation => KO
+    ARG="1 3 2"
+    run_c $ARG
+
+    ## Test 6 - Valid parameters + operation w/ one or several spaces before/after the instruction phase => KO
+    ARG="1 4 2"
+    run_c $ARG
+
+    echo ""
+    echo -e "${BLUE}Checker Program - False Tests"
+    echo -e "-----------------------------${DEF}"
+
+    ## Test 1 - Given valid list of operations => KO
+    ARG="0 9 1 8 2 7 3 6 4 5"
+    run_c $ARG
+
+    ## Test 2 - Choose valid parameters + valid instruction list that does NOT order => KO
+    ARG="0 9 1 8 2 7 3 6 4 5"
+    run_c $ARG
+
+    echo ""
+    echo -e "${BLUE}Checker Program - Right Tests"
+    echo -e "-----------------------------${DEF}"
+
+    ## Test 1 - Without any instruction => OK
+    ARG="0 1 2"
+    run_c $ARG
+
+    ## Test 2 - Given valid action list => OK
+    ARG="0 9 1 8 2"
+    run_c $ARG
+
+    ## Test 3 - Choose valid parameters + valid instructions that order => OK
+    ARG="0 3 2"
+    run_c $ARG
+
 fi

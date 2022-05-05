@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 13:44:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:39:44 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 10:44:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	get_index(t_stack **s, int min)
 void	push_min(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
-	int	min;
-	int count;
+	int		min;
+	int		count;
 
 	tmp = *a;
 	min = get_min(a);
@@ -41,24 +41,24 @@ void	push_min(t_stack **a, t_stack **b)
 	if (count > 2)
 	{
 		while (tmp->value != min)
-			rev_rotate(&tmp, STACK_A);
-		*a = tmp;	
+			rev_rotate(&tmp);
+		*a = tmp;
 	}
 	else
 	{
 		while (tmp->value != min)
-			rotate(&tmp, STACK_A);
-		*a = tmp;	
+			rotate(&tmp);
+		*a = tmp;
 	}
-	push(b, a, STACK_B);
+	push(b, a);
 }
 
 void	sort_45(t_stack **a, t_stack **b)
 {
-	int s_len;
+	int	s_len;
 	int	min;
 	int	max;
-	
+
 	s_len = stack_len(a);
 	if (s_len == 4)
 	{
@@ -68,10 +68,10 @@ void	sort_45(t_stack **a, t_stack **b)
 			s_len--;
 		}
 		if (is_sorted(a) != EXIT_SUCCESS)
-			swap(a, STACK_A);
+			swap(a);
 		while (s_len >= 1)
 		{
-			push(a, b, STACK_A);
+			push(a, b);
 			s_len--;
 		}
 	}
@@ -90,7 +90,7 @@ void	sort_45(t_stack **a, t_stack **b)
 		}
 		while (s_len > 1)
 		{
-			push(a, b, STACK_A);
+			push(a, b);
 			s_len--;
 		}
 	}

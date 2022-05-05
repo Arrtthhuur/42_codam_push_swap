@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 13:44:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/21 18:01:47 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 10:52:24 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	get_index(t_stack **s, int min)
 void	push_min(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
-	int	min;
-	int count;
+	int		min;
+	int		count;
 
 	tmp = *a;
 	min = get_min(a);
@@ -42,23 +42,23 @@ void	push_min(t_stack **a, t_stack **b)
 	{
 		while (tmp->value != min)
 			rev_rotate(&tmp, STACK_A);
-		*a = tmp;	
+		*a = tmp;
 	}
 	else
 	{
 		while (tmp->value != min)
 			rotate(&tmp, STACK_A);
-		*a = tmp;	
+		*a = tmp;
 	}
 	push(b, a, STACK_B);
 }
 
 void	sort_45(t_stack **a, t_stack **b)
 {
-	int s_len;
+	int	s_len;
 	int	min;
 	int	max;
-	
+
 	s_len = stack_len(a);
 	if (s_len == 4)
 	{

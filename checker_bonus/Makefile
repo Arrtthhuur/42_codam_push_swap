@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/04 15:51:05 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/05 14:56:18 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS		=	checker.c \
 				is_sorted.c \
 				sort_3.c \
 				sort_45.c \
+				reset_array.c \
 
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

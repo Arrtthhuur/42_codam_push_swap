@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/14 11:37:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/21 14:26:31 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 10:49:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 /*
 ** Returns the sorting case.
 */
-static int	check_sorting_case(t_stack *stack, int min, int max)
+static int	check_sorting_case(t_stack *stack, int min, int max, int s_len)
 {
-	int	s_len;
 	int	count;
 
-	s_len = stack_len(&stack);
 	count = 0;
 	while (stack->next != NULL)
 	{
@@ -31,15 +29,13 @@ static int	check_sorting_case(t_stack *stack, int min, int max)
 		{
 			if (stack->next->value != min)
 				return (3);
-			else
-				return (4);
+			return (4);
 		}
 		if (stack->value > stack->next->value)
 		{
 			if (stack->next->value > stack->next->next->value)
 				return (5);
-			else
-				return (6);
+			return (6);
 		}
 		count++;
 		stack = stack->next;
@@ -49,39 +45,32 @@ static int	check_sorting_case(t_stack *stack, int min, int max)
 
 /*
 ** Sorts stack of 3 elements.
-**		123, 132, 213, 231, 312, 321
+**		(in order) 312, 132, 231, 321, 213
 */
 void	sort_3(t_stack **stack, int min, int max)
 {
 	int	s_case;
+	int	s_len;
 
-	s_case = check_sorting_case(*stack, min, max);
+	s_len = stack_len(&stack);
+	s_case = check_sorting_case(*stack, min, max, s_len);
 	if (s_case == 2)
-	{
-		// 312
 		rotate(stack, STACK_A);
-	}
 	if (s_case == 3)
 	{
-		// 132
 		swap(stack, STACK_A);
 		rotate(stack, STACK_A);
 	}
 	if (s_case == 4)
 	{
-		// 231
 		rotate(stack, STACK_A);
 		rotate(stack, STACK_A);
 	}
 	if (s_case == 5)
 	{
-		// 321
 		rotate(stack, STACK_A);
 		swap(stack, STACK_A);
 	}
 	if (s_case == 6)
-	{
-		// 213
 		swap(stack, STACK_A);
-	}
 }

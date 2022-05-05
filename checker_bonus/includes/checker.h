@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/02 14:29:42 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/04 16:07:28 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/05 14:52:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			ft_isspace(int c);
 long long	ft_atoll(const char *str);
 int			ft_atoi(const char *str);
 int			*convert_int(char **argv, int len);
+void		reset(char *op);
 
 // Exit succes or error message.
 int			error_msg(char *msg);
