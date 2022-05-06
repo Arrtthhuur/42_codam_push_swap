@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/06 13:43:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/06 17:20:23 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 19:57:05 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,9 @@ static int	get_max_set_index(t_stack **stack)
 */
 void	stack_index(t_stack **stack)
 {
-	t_stack	*tmp;
 	int		index;
 	int		s_len;
 
-	tmp = *stack;
 	s_len = stack_len(stack);
 	while (s_len > 0)
 	{

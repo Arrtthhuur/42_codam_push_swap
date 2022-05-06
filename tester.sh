@@ -31,10 +31,6 @@ else
 	exit 1
 fi
 
-
-
-
-
 # Run push_swap
 run()
 {
@@ -119,6 +115,7 @@ ps()
     vs_checker $ARG
     nb_op $ARG
 }
+
 
 #====================================
 # Testing
@@ -266,11 +263,11 @@ if [[ $tests == "0" ]]; then
     ARG="     "
     check_error $ARG
 
-    ## Test 14 - No input
+    ## Test 15 - Weird input
     ARG="-+10 --7 +-5"
     check_error $ARG
 
-    ## Test  -  3 2 1 0
+    ## Test 16 -  3 2 1 0
     ARG="3 2 1 0"
     ps $ARG
 
@@ -284,6 +281,7 @@ fi
 #====================================
 # Checker bonus
 if [[ $tests == "3" ]]; then
+
     # Check for checker executable
     if [[ -f checker_bonus/checker ]]; then
 	    checker="./checker"
@@ -291,6 +289,7 @@ if [[ $tests == "3" ]]; then
 	    echo -e "${RED}ERROR${DEF}: No checker executable found."
 	    exit 1
     fi
+
     cd checker_bonus/
     echo ""
     echo -e "${BLUE}Checker Program - Error Management"

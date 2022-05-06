@@ -6,18 +6,26 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/06 17:40:19 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/06 20:19:16 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	checker
+
+# Colours
+RED 		:=	\033[1;31m
+GRN 		:=	\033[1;32m
+BLUE		:=	\033[1;36m
+YEL 		:=	\033[0;33m
+DEF 		:=	\033[0m
 
 # Directories
 INCL_DIR	:=	includes
 SRCS_DIR	:=	srcs
 OBJ_DIR		:=	objs
 VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
-LIBFTPRINTF	:=	libftprintf.a
+PRINTF_LIB	:=	libftprintf.a
+PRINTF_DIR	:=	./srcs/ft_printf/
 
 # Srcs
 SRCS		=	checker.c \
@@ -52,13 +60,13 @@ CC			:=	gcc
 FLAGS		:=	-Wall -Wextra -g #-Werror || annoying during development
 
 all:		$(NAME)
-
+	
 $(NAME):	$(OBJS)
-	@echo "Making libftprintf.a"
-	@make -C $(SRCS_DIR)/ft_printf
-	@echo "Compiling srcs with newly created archive"
-	$(CC) $(OBJS) $(FLAGS) -o $(NAME) ./srcs/ft_printf/$(LIBFTPRINTF)
-	@echo success!
+	@echo "$(YEL)\n  Making $(PRINTF_LIB)$(DEF)"
+	@make -C $(PRINTF_DIR)
+	@echo "$(YEL)\n  Compiling srcs with $(PRINTF_LIB)$(DEF)"
+	$(CC) $(OBJS) $(FLAGS) $(PRINTF_DIR)$(PRINTF_LIB) -o $(NAME)
+	@echo "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
 	@mkdir -p $(OBJ_DIR)

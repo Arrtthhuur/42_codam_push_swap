@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/02 14:29:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/05 14:59:18 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 20:15:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	exec_instr1(char *op, t_stack **a, t_stack **b)
 		rotate(b);
 	}
 	else
-		exec_op2(op, a, b);
+		exec_instr2(op, a, b);
 }
 
 /*

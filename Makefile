@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/06 17:39:49 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/06 20:24:37 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,8 @@ INCL_DIR	:=	includes
 SRCS_DIR	:=	srcs
 OBJ_DIR		:=	objs
 VPATH 		:=	$(subst $(space),:,$(shell find srcs -type d))
-LIBFTPRINTF	:=	libftprintf.a
+PRINTF_LIB	:=	libftprintf.a
 PRINTF_DIR	:=	./srcs/ft_printf/
-
-BONUS 		:=	0
 
 # Srcs
 SRCS		=	main.c \
@@ -55,6 +53,9 @@ SRCS		=	main.c \
 
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
+# Bonus
+BONUS 		:=	0
+
 ifeq ($(BONUS),0)
 	MAKE_BONUS = 
 	OBJ_FILES = $(OBJS)
@@ -64,31 +65,24 @@ else
 endif
 
 # Config
-CC			:=	gcc
+CC			:=	cc
 FLAGS		:=	-Wall -Wextra -g #-Werror || annoying during development
 
-all:		makedir $(NAME) $(MAKE_BONUS)
-			@echo "$(GRN)\n--- MAKEFILE DONE ------------ \n$(DEF)"
-
-$(NAME): $(OBJ_FILES)
-		@echo "$(GRN)\n - Compiling push_swap Executable --- $(DEF)"
-		gcc $^ $(FLAGS) $(PRINTF_DIR)${LIBFTPRINTF} -o $(NAME)
-
-makedir:
-		@echo "$(GRN)\n --- START MAKEFILE ------------ \n$(DEF)"
-		@echo "$(GRN) Making obj_dir Directory $(DEF)"
-		mkdir -p $(OBJ_DIR)/
-		@echo "$(GRN)\n Making libftprintf.a Library $(DEF)"
-		make -C $(PRINTF_DIR)
-		@echo "$(GRN)\n Compiling .c Files $(DEF)"
+all:		$(NAME)
+	
+$(NAME):	$(OBJS)
+	@echo "$(YEL)\n  Making $(PRINTF_LIB)$(DEF)"
+	@make -C $(PRINTF_DIR)
+	@echo "$(YEL)\n  Compiling srcs with $(PRINTF_LIB)$(DEF)"
+	$(CC) $(OBJS) $(FLAGS) $(PRINTF_DIR)$(PRINTF_LIB) -o $(NAME)
+	@echo "$(GRN)\n  Success!$(DEF)"
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
-		gcc -g $(FLAGS) -c $< -o $@
+	@mkdir -p $(OBJ_DIR)
+	@echo "compiling $(notdir $(basename $@))"
+	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
-run: all
-	./$(NAME)
-
-drun: all
+db: all
 	lldb $(NAME) -- 588 1 8 600
 
 norm:
@@ -107,18 +101,18 @@ ttest: all
 	./tester.sh t
 
 bonus:	all
-		@echo "$(YEL)\n- Go to Make Bonus: [$(BONNUS)] (System: $(UNAME_S)) --- $(WHITE)"
-		BONNUS=1
-		make -C ./mychecker_bonus
+		@echo "$(YEL)\n- Go to Make Bonus: [$(BONUS)] (System: $(UNAME_S)) --- $(DEF)"
+		@BONUS=1
+		make -C ./checker_bonus
 
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(NAME)
 
 fclean:	clean
-	cd srcs/ft_printf && make fclean
+	@cd $(PRINTF_DIR) && make fclean
+	@cd ./checker_bonus && make fclean
 	rm -f $(NAME)
-	cd ./checker_bonus && make fclean
 
 re:	fclean all
 
