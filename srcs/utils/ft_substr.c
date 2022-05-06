@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/01 11:03:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/01 13:58:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:55 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

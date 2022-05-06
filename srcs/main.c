@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:54:11 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/04 11:45:09 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 16:02:23 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int	main(int argc, char **argv)
 	input_parser(argv, argc, &stack_a);
 	if (is_sorted(&stack_a) == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
+	stack_index(&stack_a);
+	int max = get_min(&stack_a);
+	ft_printf("max = %d\n", max);
+	stack_print(stack_a, STACK_A);
 	// radix_sort(&stack_a, &stack_b);
 	apply_sort(&stack_a, &stack_b);
 	if (is_sorted(&stack_a) == EXIT_SUCCESS)

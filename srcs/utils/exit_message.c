@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/12 11:17:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:19:27 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 #include <unistd.h> // write
 

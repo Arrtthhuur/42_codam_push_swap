@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 14:32:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:02:52 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:19:55 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Swap the first 2 elements at the top of stack a.

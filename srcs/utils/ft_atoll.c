@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 12:56:00 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 12:56:22 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:46 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 long long	ft_atoll(const char *str)
 {

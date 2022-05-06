@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/15 09:15:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/01 13:58:35 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 static char	**ft_free(int j, char **buff)
 {

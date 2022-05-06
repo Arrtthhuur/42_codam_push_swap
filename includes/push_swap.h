@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:58:30 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/05 10:53:00 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 14:12:58 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 typedef struct s_stack
 {
-	int				value;
+	int				nb;
 	int				index;
 	struct s_stack	*next;
 }	t_stack;
@@ -47,9 +47,10 @@ void		rev_rotate(t_stack **stack, char stack_name);
 void		push(t_stack **dst, t_stack **src, char stack_dest);
 
 // Stack functions.
-void		stack_addfront(t_stack **s, int value, int index);
-void		stack_print(t_stack *s, char stack_name);
+void		stack_addfront(t_stack **stack, int nb);
+void		stack_print(t_stack *stack, char stack_name);
 int			stack_len(t_stack **stack);
+void		stack_index(t_stack **stack);
 int			is_sorted(t_stack **stack);
 int			get_min(t_stack **stack);
 int			get_max(t_stack **stack);

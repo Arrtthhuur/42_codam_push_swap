@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/12 15:50:22 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/21 11:37:51 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:19:51 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Take the first element at the top of src and put it at the top of dst.

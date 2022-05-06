@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/05 14:56:18 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/06 17:40:19 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,8 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 	@echo "Making libftprintf.a"
 	@make -C $(SRCS_DIR)/ft_printf
-	@echo "Copying libftprintf.a to push_swap dir"
-	@cp $(SRCS_DIR)/ft_printf/$(LIBFTPRINTF) .
 	@echo "Compiling srcs with newly created archive"
-	$(CC) $(OBJS) $(FLAGS) -o $(NAME) $(LIBFTPRINTF)
+	$(CC) $(OBJS) $(FLAGS) -o $(NAME) ./srcs/ft_printf/$(LIBFTPRINTF)
 	@echo success!
 
 $(OBJ_DIR)/%.o: $(notdir %.c)
@@ -89,11 +87,9 @@ echo:
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(NAME)
-	make fclean -C $(SRCS_DIR)/ft_printf
 
 fclean:	clean
 	@rm -f $(NAME)
-	@rm libftprintf.a
 
 re:	fclean all
 

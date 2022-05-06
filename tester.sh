@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # Simple tester for push_swap.
+## T0 = own tests
+## T1 = Eval Sheet
+## T2 = testing
+## T3 = bonus checker
 
 # Colours
 RED="\033[0;31m"
@@ -28,13 +32,7 @@ else
 fi
 
 
-# Check for checker executable
-if [[ -f checker_bonus/checker ]]; then
-	checker="./checker"
-else
-	echo -e "${RED}ERROR${DEF}: No checker executable found."
-	exit 1
-fi
+
 
 
 # Run push_swap
@@ -286,6 +284,13 @@ fi
 #====================================
 # Checker bonus
 if [[ $tests == "3" ]]; then
+    # Check for checker executable
+    if [[ -f checker_bonus/checker ]]; then
+	    checker="./checker"
+    else
+	    echo -e "${RED}ERROR${DEF}: No checker executable found."
+	    exit 1
+    fi
     cd checker_bonus/
     echo ""
     echo -e "${BLUE}Checker Program - Error Management"

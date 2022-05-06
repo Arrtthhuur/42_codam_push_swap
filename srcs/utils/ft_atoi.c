@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 13:50:15 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/02/03 13:50:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_atoi(const char *str)
 {

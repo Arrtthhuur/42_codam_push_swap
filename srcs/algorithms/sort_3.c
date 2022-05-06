@@ -6,34 +6,34 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/14 11:37:12 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/05 10:49:44 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:19:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Returns the sorting case.
 */
-static int	check_sorting_case(t_stack *stack, int min, int max, int s_len)
+static int	check_sorting_case(t_stack *stack, int min, int max)
 {
 	int	count;
 
 	count = 0;
 	while (stack->next != NULL)
 	{
-		if (stack->value == max && count == 0)
-			if (stack->next->value == min)
+		if (stack->nb == max && count == 0)
+			if (stack->next->nb == min)
 				return (2);
-		if (stack->value == max && count == 1)
+		if (stack->nb == max && count == 1)
 		{
-			if (stack->next->value != min)
+			if (stack->next->nb != min)
 				return (3);
 			return (4);
 		}
-		if (stack->value > stack->next->value)
+		if (stack->nb > stack->next->nb)
 		{
-			if (stack->next->value > stack->next->next->value)
+			if (stack->next->nb > stack->next->next->nb)
 				return (5);
 			return (6);
 		}
@@ -50,10 +50,8 @@ static int	check_sorting_case(t_stack *stack, int min, int max, int s_len)
 void	sort_3(t_stack **stack, int min, int max)
 {
 	int	s_case;
-	int	s_len;
 
-	s_len = stack_len(&stack);
-	s_case = check_sorting_case(*stack, min, max, s_len);
+	s_case = check_sorting_case(*stack, min, max);
 	if (s_case == 2)
 		rotate(stack, STACK_A);
 	if (s_case == 3)

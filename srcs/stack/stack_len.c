@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/13 12:18:08 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:45:26 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:26 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Returns length of stack.

@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/12 15:37:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:02:30 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:19:53 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Shift up all elements of stack a by 1.

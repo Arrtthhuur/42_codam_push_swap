@@ -6,11 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/14 11:23:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/04/18 14:44:25 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/06 17:20:14 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /*
 ** Checks whether stack is sorted or not.
@@ -22,7 +22,7 @@ int	is_sorted(t_stack **stack)
 	tmp = *stack;
 	while (tmp->next != NULL)
 	{
-		if (tmp->value > tmp->next->value)
+		if (tmp->nb > tmp->next->nb)
 			return (EXIT_FAILURE);
 		tmp = tmp->next;
 	}
