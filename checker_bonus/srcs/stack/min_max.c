@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/13 10:44:49 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:39:57 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 16:55:02 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ int	get_max(t_stack **stack)
 
 	tmp = *stack;
 	max = INT_MIN;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
-		if (max < tmp->value)
-			max = tmp->value;
+		if (max <= tmp->nb)
+			max = tmp->nb;
 		tmp = tmp->next;
 	}
-	if (max < tmp->value)
-		max = tmp->value;
 	return (max);
 }
 
@@ -43,13 +41,11 @@ int	get_min(t_stack **stack)
 
 	tmp = *stack;
 	min = INT_MAX;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
-		if (min > tmp->value)
-			min = tmp->value;
+		if (min >= tmp->nb)
+			min = tmp->nb;
 		tmp = tmp->next;
 	}
-	if (min > tmp->value)
-		min = tmp->value;
 	return (min);
 }

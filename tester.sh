@@ -121,6 +121,9 @@ ps()
 # Testing
 if [[ $tests == "2" ]]; then
     echo "Add tests"
+    generate_random 500
+    ARG="$rand_nb"
+    ps $ARG
 fi
 
 

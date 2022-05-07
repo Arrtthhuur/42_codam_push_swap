@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/06 20:24:37 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/07 17:00:38 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ endif
 
 # Config
 CC			:=	cc
-FLAGS		:=	-Wall -Wextra -g #-Werror || annoying during development
+FLAGS		:=	-Wall -Wextra -g -Werror #|| annoying during development
 
 all:		$(NAME)
 	
@@ -86,7 +86,7 @@ db: all
 	lldb $(NAME) -- 588 1 8 600
 
 norm:
-	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/
+	norminette srcs/* checker_bonus/srcs/*
 
 tmine: all
 	./tester.sh m
@@ -101,8 +101,6 @@ ttest: all
 	./tester.sh t
 
 bonus:	all
-		@echo "$(YEL)\n- Go to Make Bonus: [$(BONUS)] (System: $(UNAME_S)) --- $(DEF)"
-		@BONUS=1
 		make -C ./checker_bonus
 
 clean:

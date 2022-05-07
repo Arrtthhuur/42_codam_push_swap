@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 15:12:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:39:31 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 16:57:29 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 
 void	radix_sort(t_stack **a, t_stack **b)
 {
+    ft_printf("%d %d", a, b);
 }

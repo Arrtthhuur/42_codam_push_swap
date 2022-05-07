@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 13:44:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/06 17:19:46 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 18:38:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Finds the corresponding index number.
 */
-int	get_index(t_stack **s, int min)
+static int	get_min_index(t_stack **s, int min)
 {
 	t_stack	*tmp;
 	int		count;
@@ -35,7 +35,7 @@ int	get_index(t_stack **s, int min)
 /*
 ** Pushes min number to stack b.
 */
-void	push_min(t_stack **a, t_stack **b)
+static void	push_min(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 	int		min;
@@ -43,7 +43,7 @@ void	push_min(t_stack **a, t_stack **b)
 
 	tmp = *a;
 	min = get_min(a);
-	count = get_index(a, min);
+	count = get_min_index(a, min);
 	if (count > 2)
 	{
 		while (tmp->nb != min)
@@ -60,13 +60,44 @@ void	push_min(t_stack **a, t_stack **b)
 }
 
 /*
+** Sorts 5 numbers.
+*/
+static void	sort_5(t_stack **a, t_stack **b, int s_len)
+{
+	int	min;
+	int	max;
+	int	len;
+
+	while (s_len > 3)
+	{
+		push_min(a, b);
+		s_len--;
+	}
+	if (is_sorted(a) != EXIT_SUCCESS)
+	{
+		min = get_min(a);
+		max = get_max(a);
+		sort_3(a, min, max);
+	}
+	while (s_len > 1)
+	{
+		push(a, b, STACK_A);
+		s_len--;
+	}
+	len = stack_len(b);
+	while (len > 0)
+	{
+		push(a, b, STACK_A);
+		len--;
+	}
+}
+
+/*
 ** Sorts 4 and 5 numbers.
 */
 void	sort_45(t_stack **a, t_stack **b)
 {
 	int	s_len;
-	int	min;
-	int	max;
 
 	s_len = stack_len(a);
 	if (s_len == 4)
@@ -85,22 +116,5 @@ void	sort_45(t_stack **a, t_stack **b)
 		}
 	}
 	else
-	{
-		while (s_len > 3)
-		{
-			push_min(a, b);
-			s_len--;
-		}
-		if (is_sorted(a) != EXIT_SUCCESS)
-		{
-			min = get_min(a);
-			max = get_max(a);
-			sort_3(a, min, max);
-		}
-		while (s_len > 1)
-		{
-			push(a, b, STACK_A);
-			s_len--;
-		}
-	}
+		sort_5(a, b, s_len);
 }

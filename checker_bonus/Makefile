@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/06 20:19:16 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/07 17:00:17 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Config
 CC			:=	gcc
-FLAGS		:=	-Wall -Wextra -g #-Werror || annoying during development
+FLAGS		:=	-Wall -Wextra -g -Werror #|| annoying during development
 
 all:		$(NAME)
 	
@@ -93,11 +93,10 @@ echo:
 	@$(MAKE) -C unit-tests echo
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@rm -rf $(NAME)
+	rm -rf $(OBJ_DIR)
 
 fclean:	clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re:	fclean all
 

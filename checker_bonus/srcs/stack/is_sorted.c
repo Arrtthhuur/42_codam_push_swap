@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/14 11:23:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/02 15:39:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 16:55:13 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_sorted(t_stack **stack)
 	tmp = *stack;
 	while (tmp->next != NULL)
 	{
-		if (tmp->value > tmp->next->value)
+		if (tmp->nb > tmp->next->nb)
 			return (EXIT_FAILURE);
 		tmp = tmp->next;
 	}

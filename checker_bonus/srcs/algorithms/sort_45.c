@@ -6,12 +6,15 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 13:44:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/05 10:44:24 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 16:53:12 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
+/*
+** Finds the corresponding index number.
+*/
 int	get_index(t_stack **s, int min)
 {
 	t_stack	*tmp;
@@ -21,7 +24,7 @@ int	get_index(t_stack **s, int min)
 	count = 0;
 	while (tmp != NULL)
 	{
-		if (tmp->value == min)
+		if (tmp->nb == min)
 			return (count);
 		count++;
 		tmp = tmp->next;
@@ -29,6 +32,9 @@ int	get_index(t_stack **s, int min)
 	return (-1);
 }
 
+/*
+** Pushes min number to stack b.
+*/
 void	push_min(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
@@ -40,24 +46,51 @@ void	push_min(t_stack **a, t_stack **b)
 	count = get_index(a, min);
 	if (count > 2)
 	{
-		while (tmp->value != min)
+		while (tmp->nb != min)
 			rev_rotate(&tmp);
 		*a = tmp;
 	}
 	else
 	{
-		while (tmp->value != min)
+		while (tmp->nb != min)
 			rotate(&tmp);
 		*a = tmp;
 	}
 	push(b, a);
 }
 
+/*
+** Sorts 5 numbers.
+*/
+static void	sort_5(t_stack **a, t_stack **b, int s_len)
+{
+	int	min;
+	int	max;
+
+	while (s_len > 3)
+	{
+		push_min(a, b);
+		s_len--;
+	}
+	if (is_sorted(a) != EXIT_SUCCESS)
+	{
+		min = get_min(a);
+		max = get_max(a);
+		sort_3(a, min, max);
+	}
+	while (s_len > 1)
+	{
+		push(a, b);
+		s_len--;
+	}
+}
+
+/*
+** Sorts 4 and 5 numbers.
+*/
 void	sort_45(t_stack **a, t_stack **b)
 {
 	int	s_len;
-	int	min;
-	int	max;
 
 	s_len = stack_len(a);
 	if (s_len == 4)
@@ -76,22 +109,5 @@ void	sort_45(t_stack **a, t_stack **b)
 		}
 	}
 	else
-	{
-		while (s_len > 3)
-		{
-			push_min(a, b);
-			s_len--;
-		}
-		if (is_sorted(a) != EXIT_SUCCESS)
-		{
-			min = get_min(a);
-			max = get_max(a);
-			sort_3(a, min, max);
-		}
-		while (s_len > 1)
-		{
-			push(a, b);
-			s_len--;
-		}
-	}
+		sort_5(a, b, s_len);
 }
