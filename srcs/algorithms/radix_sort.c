@@ -6,43 +6,61 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 15:12:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/07 18:45:19 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/07 22:19:59 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static int	get_index(t_stack **ref, int index)
+static void  push_until_empty(t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
+    int b_len;
 
-	temp = *ref;
-	while (temp->next && index > 0)
-	{
-		temp = temp->next;
-		index--;
-	}
-	return (temp->index);
+    b_len = stack_len(b);
+    while (b_len > 0)
+    {
+        push(a, b, STACK_A);
+        b_len--;
+    }
 }
 
-void	radix_sort(t_stack **a, t_stack **b)
+static int	get_index(t_stack **ref, int index)
 {
-    int size = stack_len(a);
-    for (int i = 0 ; is_sorted(a) != 0 ; ++i)
+	t_stack	*tmp;
+
+	tmp = *ref;
+	while (tmp->next && index > 0)
+	{
+		tmp = tmp->next;
+		index--;
+	}
+	return (tmp->index);
+}
+
+/*
+** Sorts more than 5 numbers using radix sort.
+*/
+void	radix_sort(t_stack **a, t_stack **b, int s_len)
+{
+    int i;
+    int j;
+    int num;
+    
+    i = 0;
+    while (is_sorted(a) != 0)
     {
-        for (int j = 0 ; j < size ; ++j)
+        j = 0;
+        while (j < s_len)
         {
-            int num = get_index(a, 0);
-            if ((num >> i)&1)
+            num = get_index(a, 0);
+            ft_printf("%d => %d", num, ((num >> i) & 1)); 
+            if ((num >> i) & 1)
                 rotate(a, STACK_A);
             else 
                 push(b, a, STACK_B);
+            j++;
         }
-        int len = stack_len(b);
-        while (len > 0)
-        {
-            push(a, b, STACK_A);
-            len--;
-        }
+        push_until_empty(a, b);
+        i++;
     }
 }
