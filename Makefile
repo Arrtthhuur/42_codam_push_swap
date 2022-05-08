@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/07 22:22:21 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/07 22:26:14 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ ttest: all
 	./tester.sh t
 
 bonus:	all
-		make -C ./checker_bonus
+	make -C ./checker_bonus
 
 clean:
 	@rm -rf $(OBJ_DIR)
