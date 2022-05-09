@@ -105,7 +105,7 @@ void	input_parser(char **argv, int argc, t_stack **stack)
 	int	*array;
 
 	i = 1;
-	while (argv[i] != '\0')
+	while (argv[i] != NULL)
 	{
 		if (check_only_int(argv[i]))
 			error_exit();
