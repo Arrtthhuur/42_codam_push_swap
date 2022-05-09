@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 16:08:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/06 13:49:46 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/09 10:27:56 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 #include <stdio.h>
 
+/*
+** Checks that the value only contains integers.
+*/
 static int	check_only_int(char *value)
 {
 	if (*value == '-')
@@ -29,6 +32,9 @@ static int	check_only_int(char *value)
 	return (EXIT_SUCCESS);
 }
 
+/*
+** Checks that the value is not bigger than int.
+*/
 static int	check_bigger_int(char *value)
 {
 	long long	tmp;
@@ -39,6 +45,9 @@ static int	check_bigger_int(char *value)
 	return (EXIT_SUCCESS);
 }
 
+/*
+** Converts and fills the array with given arguments.
+*/
 static int	*fill_array(char **argv, int len)
 {
 	int		*array;
@@ -60,6 +69,9 @@ static int	*fill_array(char **argv, int len)
 	return (array);
 }
 
+/*
+** Checks for duplicates within the newly created array.
+*/
 static int	check_duplicates(int *array, int argc)
 {
 	int	i;
@@ -80,6 +92,13 @@ static int	check_duplicates(int *array, int argc)
 	return (EXIT_SUCCESS);
 }
 
+/*
+** Parses the input, 
+**	checks for only ints, 
+**	bigger than ints, 
+**	duplicates 
+**	and then adds the values to the stack a.
+*/
 void	input_parser(char **argv, int argc, t_stack **stack)
 {
 	int	i;

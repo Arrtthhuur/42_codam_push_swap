@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/01 13:54:11 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/08 13:11:47 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/09 10:25:17 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	apply_sort(t_stack **a, t_stack **b)
 	else if (s_len == 3)
 		sort_3(a, min, max);
 	else if (s_len == 4 || s_len == 5)
-		sort_45(a, b); 
+		sort_45(a, b);
 	else
 		radix_sort(a, b, s_len);
 }

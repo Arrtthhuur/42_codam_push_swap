@@ -6,15 +6,18 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 15:12:58 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/08 13:22:48 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/09 10:07:30 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void  push_until_empty(t_stack **a, t_stack **b)
+/*
+** Pushes numbers back to stack a until stack b is empty.
+*/
+static void	push_until_empty(t_stack **a, t_stack **b)
 {
-	int b_len;
+	int	b_len;
 
 	b_len = stack_len(b);
 	while (b_len > 0)
@@ -24,6 +27,9 @@ static void  push_until_empty(t_stack **a, t_stack **b)
 	}
 }
 
+/*
+** Gets the number at given index.
+*/
 static int	get_index(t_stack **stack, int index)
 {
 	t_stack	*tmp;
@@ -51,9 +57,9 @@ static int	get_index(t_stack **stack, int index)
 */
 void	radix_sort(t_stack **a, t_stack **b, int s_len)
 {
-	int i;
-	int j;
-	int nb;
+	int	i;
+	int	j;
+	int	nb;
 
 	i = 0;
 	while (is_sorted(a) != 0)
@@ -62,15 +68,13 @@ void	radix_sort(t_stack **a, t_stack **b, int s_len)
 		while (j < s_len)
 		{
 			nb = get_index(a, 0);
-			ft_printf("%d >> %d & 1 == %d\n", nb, i, ((nb >> i) & 1)); 
 			if (((nb >> i) & 1) == 1)
 				rotate(a, STACK_A);
-			else 
+			else
 				push(b, a, STACK_B);
 			j++;
 		}
 		push_until_empty(a, b);
-		stack_print(*a, STACK_A);
 		i++;
 	}
 }

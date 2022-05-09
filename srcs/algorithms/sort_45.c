@@ -6,11 +6,26 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/18 13:44:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/07 18:38:21 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/09 10:08:05 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+/*
+** Pushes numbers back to stack a until stack b is empty.
+*/
+static void	push_until_empty(t_stack **a, t_stack **b)
+{
+	int	b_len;
+
+	b_len = stack_len(b);
+	while (b_len > 0)
+	{
+		push(a, b, STACK_A);
+		b_len--;
+	}
+}
 
 /*
 ** Finds the corresponding index number.
@@ -66,7 +81,6 @@ static void	sort_5(t_stack **a, t_stack **b, int s_len)
 {
 	int	min;
 	int	max;
-	int	len;
 
 	while (s_len > 3)
 	{
@@ -84,12 +98,7 @@ static void	sort_5(t_stack **a, t_stack **b, int s_len)
 		push(a, b, STACK_A);
 		s_len--;
 	}
-	len = stack_len(b);
-	while (len > 0)
-	{
-		push(a, b, STACK_A);
-		len--;
-	}
+	push_until_empty(a, b);
 }
 
 /*

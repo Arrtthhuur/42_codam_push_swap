@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/07 22:26:14 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/09 10:08:12 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ endif
 
 # Config
 CC			:=	cc
-FLAGS		:=	-Wall -Wextra -g #-Werror #|| annoying during development
+FLAGS		:=	-Wall -Wextra -g -Werror #|| annoying during development
 
 all:		$(NAME)
 	
