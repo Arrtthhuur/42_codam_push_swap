@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/07 17:00:17 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/12 09:48:51 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,21 +73,11 @@ $(OBJ_DIR)/%.o: $(notdir %.c)
 	@echo "compiling $(notdir $(basename $@))"
 	@$(CC) $(FLAGS) -c $< -I$(INCL_DIR) -o $@
 
-run: all
-	./$(NAME)
-
-drun: all
+db: all
 	lldb $(NAME) -- 0 9 1 8 2 7 3 6 4 5
 
 norm:
 	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/
-
-test:
-	@$(MAKE) -C unit-tests
-
-local:
-	TEST=1
-	@echo $(SRCS)
 
 echo:
 	@$(MAKE) -C unit-tests echo
@@ -96,6 +86,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean:	clean
+	@cd $(PRINTF_DIR) && make fclean
 	rm -f $(NAME)
 
 re:	fclean all

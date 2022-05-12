@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/02 14:29:42 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/07 16:51:57 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/11 09:26:22 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		input_parser(char **argv, int argc, t_stack **stack);
 // Algorithm functions.
 void		sort_3(t_stack **stack, int min, int max);
 void		sort_45(t_stack **a, t_stack **b);
-void		radix_sort(t_stack **a, t_stack **b);
+void		radix_sort(t_stack **a, t_stack **b, int s_len);
 
 // Operation functions.
 void		swap(t_stack **stack);
