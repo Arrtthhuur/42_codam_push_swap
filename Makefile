@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/01 13:52:46 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/09 10:08:12 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/12 13:46:25 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,13 +105,12 @@ bonus:	all
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@rm -rf $(NAME)
 
 fclean:	clean
 	@cd $(PRINTF_DIR) && make fclean
 	@cd ./checker_bonus && make fclean
 	rm -f $(NAME)
-	rm tmp
+	if [ -f tmp ] ; then rm tmp ; fi
 
 re:	fclean all
 

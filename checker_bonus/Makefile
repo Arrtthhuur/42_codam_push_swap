@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/05/02 14:36:32 by abeznik       #+#    #+#                  #
-#    Updated: 2022/05/12 09:48:51 by abeznik       ########   odam.nl          #
+#    Updated: 2022/05/12 13:48:28 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,6 @@ db: all
 
 norm:
 	norminette srcs/*.c srcs/utils/*.c srcs/operations/*.c srcs/stack/*.c includes/
-
-echo:
-	@$(MAKE) -C unit-tests echo
 
 clean:
 	rm -rf $(OBJ_DIR)

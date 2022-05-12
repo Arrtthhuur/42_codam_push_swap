@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/02 14:29:05 by abeznik       #+#    #+#                 */
-/*   Updated: 2022/05/12 09:44:57 by abeznik       ########   odam.nl         */
+/*   Updated: 2022/05/12 13:46:52 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	read_char(char *c)
 	int	nbytes;
 
 	nbytes = read(0, c, 1);
-	nbytes = -1;
 	if (nbytes < 0)
 		return (EXIT_FAILURE);
 	if (nbytes == 0)
